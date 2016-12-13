@@ -1,7 +1,6 @@
 const keys = document.querySelectorAll('.keys');
 
-keys.forEach(key => {
-});
+keys.forEach(key => { key.addEventListener('transitionend', removeTransition)});
 
 this.addEventListener('keydown', playSound);
 
@@ -13,5 +12,12 @@ function playSound(e) {
     if (keys) {
         const play = new Audio(audio.src);
         play.play();
+        keys.classList.add('playing')
+    }
+}
+
+function removeTransition (e) {
+    if(e.propertyName === 'transform'){
+        e.target.className = 'key';
     }
 }
